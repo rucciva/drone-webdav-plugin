@@ -12,8 +12,10 @@ rclone config create \
     remote webdav \
     vendor other \
     url  $URL \
-    user $USERNAME
-rclone config password remote pass $PASSWORD
+    user $USERNAME \
+    > /dev/null 2>&1
+
+rclone config password remote pass $PASSWORD > /dev/null 2>&1
 
 for SPATH in $(echo "$SOURCES" | sed "s/,/ /g"); do
     if [ -d "$SPATH" ] || [ -f "$SPATH" ] ; then
