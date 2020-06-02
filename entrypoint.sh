@@ -37,7 +37,7 @@ for SPATH in $(echo "$SOURCES" | sed "s/,/ /g"); do
         fi
         
         echo "cloning $SPATH to remote:$RPATH/$(basename $SPATH) "
-        rclone copy $SPATH remote:$RPATH/$(basename $SPATH) -v
+        rclone copy $SPATH remote:$RPATH/$(basename $SPATH)
 
     else
         echo "WARNING: source path $SPATH does not exist"
