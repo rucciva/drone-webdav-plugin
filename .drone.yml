@@ -26,7 +26,7 @@ steps:
   - name: create something
     image: alpine:3.11.6
     commands:
-      - mkdir -p assets/{folder1,folder2,folder3}
+      - mkdir -p assets/folder1 assets/folder2 assets/folder3
       - touch assets/folder1/file1 assets/folder2/file2 assets/folder3/file3
 
   - name: publish files
@@ -49,6 +49,6 @@ steps:
         - success
 ---
 kind: signature
-hmac: 97ca98a129843b4e4d69c46d26c43db3628adc41c2214551193c233d91653c71
+hmac: fe198686a0a5b922b6013ce3c4823d2de238d723f0047cc08a668ca4d678ec0c
 
 ...
