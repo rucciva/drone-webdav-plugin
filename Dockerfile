@@ -13,5 +13,4 @@ RUN apk add --no-cache ca-certificates bash
 COPY --from=0 /tmp/rclone-v1.46-linux-amd64/rclone /usr/bin/
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
-ENTRYPOINT [ "/bin/bash", "-c" ]
-CMD [ "/entrypoint.sh" ]
+ENTRYPOINT [ "/entrypoint.sh" ]
