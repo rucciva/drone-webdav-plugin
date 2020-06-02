@@ -1,0 +1,54 @@
+---
+kind: secret
+name: webdav_url
+get:
+  path: drone/${DRONE_REPO_NAMESPACE}
+  name: webdav_url
+
+---
+kind: secret
+name: webdav_username
+get:
+  path: drone/${DRONE_REPO_NAMESPACE}
+  name: webdav_username
+
+---
+kind: secret
+name: webdav_password
+get:
+  path: drone/${DRONE_REPO_NAMESPACE}
+  name: webdav_password
+
+---
+kind: pipeline
+name: default
+steps:
+  - name: create something
+    image: alpine:3.11.6
+    commands:
+      - mkdir -p assets/folder1 assets/folder2 assets/folder3
+      - touch assets/folder1/file1 assets/folder2/file2 assets/folder3/file3
+
+  - name: publish files
+    image: rucciva/drone-webdav-plugin:0.0.2
+    pull: always
+    settings:
+      url: 
+        from_secret: webdav_url 
+      username: 
+        from_secret: webdav_username 
+      password: 
+        from_secret: webdav_password
+      remote_base_path: /drone/${DRONE_REPO_OWNER}/${DRONE_REPO_NAME}
+      sources:
+        - ./assets/folder1
+        - ./assets/folder2
+    when:
+      status: 
+        - failure 
+        - success
+---
+kind: signature
+hmac: fe198686a0a5b922b6013ce3c4823d2de238d723f0047cc08a668ca4d678ec0c
+
+...
