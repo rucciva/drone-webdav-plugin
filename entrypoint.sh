@@ -48,7 +48,7 @@ done
 
 if [ -n "$REMOTE_BASE_PATH" ] && [ "true" == "$BUILD_NUMBER_PREFIX" ] && [ "$MAX_BUILD_RECORD" -eq "$MAX_BUILD_RECORD" ]  2>/dev/null ; then
     i=0
-    for dir in `rclone lsf --dirs-only --dir-slash=false "remote:$REMOTE_BASE_PATH" | sort -r`; do 
+    for dir in `rclone lsf --dirs-only --dir-slash=false "remote:$REMOTE_BASE_PATH" | sort -nr`; do 
         if [ "$dir" -eq "$dir" ] 2>/dev/null ; then
             ((i=i+1))
             if  [ "$dir" -ne "$BUILD_NUMBER" ] && [ "$i" -gt "$MAX_BUILD_RECORD" ]; then 
