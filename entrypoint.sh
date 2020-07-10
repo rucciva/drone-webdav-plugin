@@ -29,19 +29,23 @@ for SPATH in $(echo "$SOURCES" | sed "s/,/ /g"); do
         RPATH="${REMOTE_PATH}"
         
         if [ -n "$REMOTE_BASE_PATH" ] ; then
+            # clone parent directory structure
             RPATH="$REMOTE_BASE_PATH"
             if [ "true" == "$BUILD_NUMBER_PREFIX" ]; then 
                 RPATH="${RPATH}/${BUILD_NUMBER}"
             fi
             RPATH="${RPATH}/$(dirname $SPATH)"
         fi
+        if [ -d "$SPATH" ]; then 
+            # persist directory to remote
+            RPATH="$RPATH/$(basename $SPATH)"
+        fi
         
-        echo "cloning $SPATH to remote:$RPATH/$(basename $SPATH) "
-        rclone copy $SPATH remote:$RPATH/$(basename $SPATH)
+        echo "cloning $SPATH to remote:$RPATH"
+        rclone copy $SPATH remote:$RPATH
 
     else
         echo "WARNING: source path $SPATH does not exist"
-
     fi
 done
 
