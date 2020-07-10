@@ -30,7 +30,7 @@ steps:
       - touch assets/folder1/file1 assets/folder2/file2 assets/folder3/file3
 
   - name: publish files
-    image: rucciva/drone-webdav-plugin:0.0.2
+    image: rucciva/drone-webdav-plugin:0.0.3
     pull: always
     settings:
       url: 
@@ -49,6 +49,6 @@ steps:
         - success
 ---
 kind: signature
-hmac: fe198686a0a5b922b6013ce3c4823d2de238d723f0047cc08a668ca4d678ec0c
+hmac: 9db41bccc736339520f8be116198eed895497295670c618ac21fe076318e9467
 
 ...
